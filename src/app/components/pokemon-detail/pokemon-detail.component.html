@@ -1,0 +1,49 @@
+<div class="detail-card" [style.background]="'linear-gradient(135deg, ' + getCardColor(pokemon.types[0].type.name) + '20, #1a1a1a 80%)'">
+
+  <button class="close-btn" (click)="closeDetail()" aria-label="Cerrar">&times;</button>
+
+  <div class="detail-left-panel">
+    <div class="image-container">
+      <img [src]="pokemon.sprites.other['official-artwork'].front_default" [alt]="pokemon.name">
+    </div>
+    <h1>{{ pokemon.name | titlecase }}</h1>
+    <span class="pokemon-id">#{{ pokemon.id.toString().padStart(4, '0') }}</span>
+    <div class="types">
+      <span *ngFor="let typeInfo of pokemon.types" class="type-badge" [style.backgroundColor]="getCardColor(typeInfo.type.name)">
+        {{ typeInfo.type.name }}
+      </span>
+    </div>
+  </div>
+
+  <div class="detail-right-panel">
+    <div class="description-container">
+      <h3>Descripción</h3>
+      <p class="description">{{ description }}</p>
+    </div>
+    <div class="stats-container">
+      <h3>Estadísticas</h3>
+      <div class="chart-container">
+        <canvas #statsChart></canvas>
+      </div>
+    </div>
+
+    <!-- 👇 NUEVO: Sección de la Cadena Evolutiva 👇 -->
+    <div class="evolution-container" *ngIf="evolutionChain.length > 1">
+      <h3>Línea Evolutiva</h3>
+      <div class="evolution-chain">
+        <ng-container *ngFor="let evo of evolutionChain; let i = index">
+          <div class="evolution-stage">
+            <div class="evolution-image-bg">
+              <img [src]="evo.sprites.other['official-artwork'].front_default" [alt]="evo.name">
+            </div>
+            <span>{{ evo.name | titlecase }}</span>
+          </div>
+          <div *ngIf="i < evolutionChain.length - 1" class="evolution-arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+
+</div>

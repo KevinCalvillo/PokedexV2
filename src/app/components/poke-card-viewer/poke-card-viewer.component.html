@@ -1,0 +1,18 @@
+<div #card class="card-3d" (click)="onCardClick()">
+  <div class="card-content-wrapper">
+    <div class="card-content">
+      <div class="pokemon-img-container">
+        <img
+          class="pokemon-sprite"
+          [src]="'https://play.pokemonshowdown.com/sprites/gen5ani/' + pokemon.name + '.gif'"
+          [alt]="pokemon.name">
+      </div>
+      <h2>{{ pokemon.name | titlecase }}</h2>
+      <div class="types">
+        <span *ngFor="let typeInfo of pokemon.types" class="type-badge" [ngClass]="typeInfo.type.name">
+          {{ typeInfo.type.name }}
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

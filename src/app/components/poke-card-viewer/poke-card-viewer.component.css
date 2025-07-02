@@ -1,0 +1,132 @@
+:host {
+  display: block;
+}
+
+/* Contenedor principal de la tarjeta 3D */
+.card-3d {
+  width: 100%;
+  height: 350px;
+  position: relative;
+  border-radius: 16px;
+  transform-style: preserve-3d;
+  transition: transform 0.4s ease-out;
+  color: white;
+}
+
+/* El contenido visible de la tarjeta */
+.card-content-wrapper {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  z-index: 2;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Oculta el exceso del borde circular */
+}
+
+/* --- 👇 SECCIÓN MODIFICADA --- */
+
+/* El borde de gradiente ahora es un círculo */
+.card-3d::before {
+  content: '';
+  position: absolute;
+  /* Centramos el círculo en la tarjeta */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* Le damos un tamaño fijo */
+  width: 350px; /* Un poco más grande que la altura de la tarjeta */
+  height: 350px;
+  background: conic-gradient(from 90deg at 50% 50%, #f8d030, #ef5350, #6890f0, #78c850, #f8d030);
+  filter: blur(15px); /* Aumentamos el desenfoque para un efecto más suave */
+  border-radius: 50%; /* ¡La clave para hacerlo un círculo! */
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  animation: spin 5s linear infinite;
+}
+
+.card-3d:hover::before {
+  opacity: 1;
+}
+
+@keyframes spin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* --- FIN DE LA SECCIÓN MODIFICADA --- */
+
+
+/* El contenido se mueve hacia el frente para el efecto de paralaje */
+.card-content {
+  text-align: center;
+  transform: translateZ(60px);
+}
+
+.pokemon-img-container {
+  transform: translateZ(80px);
+}
+
+.pokemon-sprite {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 6px rgba(0, 0, 0, 0.3));
+  transition: transform 0.3s ease;
+}
+
+.card-3d:hover .pokemon-sprite {
+  transform: translateY(-15px) scale(1.1);
+}
+
+h2 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 30px 10px;
+}
+
+.types {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 15px;
+}
+
+.type-badge {
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* --- COLORES PARA CADA TIPO DE POKÉMON --- */
+.grass { background-color: #78C850; }
+.fire { background-color: #F08030; }
+.water { background-color: #6890F0; }
+.bug { background-color: #A8B820; }
+.normal { background-color: #A8A878; }
+.poison { background-color: #A040A0; }
+.electric { background-color: #F8D030; }
+.ground { background-color: #E0C068; }
+.fairy { background-color: #EE99AC; }
+.fighting { background-color: #C03028; }
+.psychic { background-color: #F85888; }
+.rock { background-color: #B8A038; }
+.ghost { background-color: #705898; }
+.ice { background-color: #98D8D8; }
+.dragon { background-color: #7038F8; }
+.flying { background-color: #A890F0; }
+.steel { background-color: #B8B8D0; }
+.dark { background-color: #705848; }
