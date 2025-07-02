@@ -40,30 +40,32 @@ Una moderna y espectacular Pokédex interactiva construida con **Angular**. Este
   Instálalo globalmente si aún no lo tienes:
   ```bash
   npm install -g @angular/cli
-📦 Instalación
-Clona el repositorio:
 
-bash
-Copy
-Edit
-git clone https://github.com/tu-usuario/PokedexV2.git
-Entra en el directorio del proyecto:
+---
 
-bash
-Copy
-Edit
+## 📦 Instalación
+
+**Clona el repositorio:**
+```bash
+git clone https://github.com/KevinCalvillo/PokedexV2.git
+```
+
+**Entra en el directorio del proyecto:**
+```bash
 cd PokedexV2
-Instala las dependencias:
+```
 
-bash
-Copy
-Edit
+**Instala las dependencias:**
+```bash
 npm install
-▶️ Ejecutar el Servidor de Desarrollo
-Inicia la aplicación en modo desarrollo:
+```
+---
 
-bash
-Copy
-Edit
+## ▶️ Ejecutar el Servidor de Desarrollo
+
+**Inicia la aplicación en modo desarrollo:**
+```bash
 ng serve -o
+```
+
 La aplicación se abrirá automáticamente en tu navegador en http://localhost:4200/.
