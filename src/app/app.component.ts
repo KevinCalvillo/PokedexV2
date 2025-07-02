@@ -12,16 +12,11 @@ import { PokemonDetailComponent } from './components/pokemon-detail/pokemon-deta
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [
-    CommonModule,
-    FormsModule,
-    PokeCardViewerComponent,
-    PokemonDetailComponent
-  ],
+  imports: [CommonModule, FormsModule, PokeCardViewerComponent,PokemonDetailComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
   animations: [
-    // Animación para la lista de tarjetas
+
     trigger('listAnimation', [
       transition('* => *', [
         query(':enter', [
@@ -38,7 +33,6 @@ import { PokemonDetailComponent } from './components/pokemon-detail/pokemon-deta
       ])
     ]),
 
-    // 👇 ESTA ES LA ANIMACIÓN QUE FALTABA 👇
     trigger('viewAnimation', [
       transition('grid => detail', [
         group([
@@ -66,7 +60,6 @@ import { PokemonDetailComponent } from './components/pokemon-detail/pokemon-deta
   ]
 })
 export class AppComponent implements OnInit {
-  // El resto de tu clase se mantiene igual...
   title = 'pokedex-v2';
   pokemons: any[] = [];
   selectedPokemon: any | null = null;

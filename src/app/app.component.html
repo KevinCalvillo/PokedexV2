@@ -1,6 +1,5 @@
 <div class="pokedex-frame">
 
-  <!-- Panel Izquierdo: Controles y Pantalla de Búsqueda -->
   <div class="pokedex-left-panel">
     <div class="pokedex-lights">
       <div class="light light-blue"></div>
@@ -47,10 +46,8 @@
     </div>
   </div>
 
-  <!-- Panel Derecho: Ahora maneja la animación de cambio de vista -->
   <div class="pokedex-right-panel" [@viewAnimation]="selectedPokemon ? 'detail' : 'grid'">
 
-    <!-- MODO CUADRÍCULA -->
     <main *ngIf="!selectedPokemon" class="pokemon-grid" [@listAnimation]="pokemons.length" (@listAnimation.done)="onAnimationDone($event)">
       <app-poke-card-viewer
         *ngFor="let pokemon of pokemons"
@@ -63,7 +60,6 @@
       <p>No se encontró el Pokémon "{{ lastSearchTerm }}"</p>
     </div>
 
-    <!-- MODO DETALLE -->
     <app-pokemon-detail
       *ngIf="selectedPokemon"
       [pokemon]="selectedPokemon"

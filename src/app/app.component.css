@@ -20,7 +20,6 @@
   filter: brightness(0.7);
 }
 
-/* El marco completo del Pokédex */
 .pokedex-frame {
   width: 100%;
   max-width: 1600px;
@@ -34,7 +33,6 @@
   position: relative;
 }
 
-/* Panel izquierdo con los controles */
 .pokedex-left-panel {
   flex: 1;
   padding: 30px;
@@ -74,7 +72,6 @@
 .light-red { background-color: #f76c6c; }
 .light-yellow { background-color: #f7d36c; }
 
-/* La cruceta (D-Pad) hecha con CSS */
 .pokedex-dpad {
   width: 120px;
   height: 120px;
@@ -90,7 +87,6 @@
 .pokedex-dpad::before { width: 40px; height: 100%; left: 40px; }
 .pokedex-dpad::after { width: 100%; height: 40px; top: 40px; }
 
-/* Pantalla LCD en el panel izquierdo */
 .pokedex-lcd-screen {
   width: 80%;
   height: 25%;
@@ -118,7 +114,6 @@
     pointer-events: none;
 }
 
-/* Contenedor de la búsqueda */
 .search-container {
   position: relative;
   z-index: 2;
@@ -195,19 +190,17 @@
   cursor: not-allowed;
 }
 
-/* Panel derecho que contiene la "pantalla" */
-/* Panel derecho que contiene la "pantalla" */
 .pokedex-right-panel {
   flex: 2.5;
   padding: 20px;
   background-color: #111;
   border-radius: 0 5px 5px 0;
   box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
-  overflow: auto; /* Cambiado de 'auto' a 'hidden' para la animación */
-  position: relative; /* Clave para la animación de los hijos */
+  overflow: auto;
+  position: relative;
+
 }
 
-/* Grid donde van las tarjetas */
 .pokemon-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
@@ -215,7 +208,6 @@
   perspective: 2000px;
 }
 
-/* Mensaje de error en el panel derecho */
 .error-message {
   width: 100%;
   height: 100%;
@@ -232,17 +224,14 @@
   display: inline-block;
 }
 
-/* --- NUEVOS DETALLES VISUALES --- */
-
-/* Detalle de la bisagra que une los dos paneles */
 .pokedex-left-panel {
-  position: relative; /* Necesario para el pseudo-elemento */
+  position: relative;
 }
 
 .pokedex-left-panel::after {
   content: '';
   position: absolute;
-  right: -4px; /* Se posiciona sobre el borde existente */
+  right: -4px;
   top: 0;
   width: 4px;
   height: 100%;
@@ -250,7 +239,6 @@
   z-index: 10;
 }
 
-/* Rejilla del altavoz */
 .pokedex-speaker-grill {
   width: 60%;
   display: flex;
@@ -266,9 +254,8 @@
   box-shadow: inset 0 2px 2px rgba(0,0,0,0.5);
 }
 
-/* Decoración del panel derecho */
 .pokedex-right-panel {
-  position: relative; /* Necesario para el texto decorativo */
+  position: relative;
 }
 
 .panel-decoration {
@@ -283,12 +270,10 @@
   opacity: 0.7;
 }
 
-/* Para navegadores modernos (Firefox) */
 .pokedex-right-panel {
-  scrollbar-width: none; /* Oculta la barra de scroll */
+  scrollbar-width: none;
 }
 
-/* Para navegadores WebKit (Chrome, Safari, Edge) */
 .pokedex-right-panel::-webkit-scrollbar {
-  display: none; /* Oculta la barra de scroll */
+  display: none;
 }

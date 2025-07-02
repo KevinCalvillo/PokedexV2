@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit, OnDestro
 import { CommonModule } from '@angular/common';
 import { PokemonService } from '../../servicios/pokemon.service';
 import { Chart, registerables } from 'chart.js';
-import { forkJoin } from 'rxjs'; // Importante para manejar múltiples llamadas a la API
+import { forkJoin } from 'rxjs'; 
 
 Chart.register(...registerables);
 
@@ -21,7 +21,7 @@ export class PokemonDetailComponent implements OnInit, AfterViewInit, OnDestroy 
 
   description: string = 'Cargando descripción...';
   statsChart: Chart | null = null;
-  evolutionChain: any[] = []; // Array para guardar la cadena evolutiva
+  evolutionChain: any[] = [];
 
   constructor(private pokemonService: PokemonService) {}
 
@@ -40,14 +40,12 @@ export class PokemonDetailComponent implements OnInit, AfterViewInit, OnDestroy 
   }
 
   loadPokemonData(): void {
-    // 1. Carga la descripción y obtiene la URL de la cadena evolutiva
     this.pokemonService.getPokemonDescription(this.pokemon.id).subscribe(speciesData => {
       const flavorTextEntry = speciesData.flavor_text_entries.find(
         (entry: any) => entry.language.name === 'es'
       );
       this.description = flavorTextEntry ? flavorTextEntry.flavor_text.replace(/\f/g, ' ') : 'No se encontró descripción en español.';
 
-      // 2. Si existe la URL, carga la cadena evolutiva
       if (speciesData.evolution_chain.url) {
         this.loadEvolutionChain(speciesData.evolution_chain.url);
       }
@@ -59,7 +57,6 @@ export class PokemonDetailComponent implements OnInit, AfterViewInit, OnDestroy 
       const chainNames: string[] = [];
       let currentStage = chainData.chain;
 
-      // 3. Recorre la cadena anidada para extraer los nombres de los Pokémon
       while (currentStage) {
         chainNames.push(currentStage.species.name);
         if (currentStage.evolves_to.length > 0) {
@@ -69,7 +66,6 @@ export class PokemonDetailComponent implements OnInit, AfterViewInit, OnDestroy 
         }
       }
 
-      // 4. Obtiene los detalles completos de cada Pokémon en la cadena
       const evolutionObservables = chainNames.map(name => this.pokemonService.getPokemonByNameOrId(name));
       forkJoin(evolutionObservables).subscribe(evolutionDetails => {
         this.evolutionChain = evolutionDetails;
@@ -78,7 +74,6 @@ export class PokemonDetailComponent implements OnInit, AfterViewInit, OnDestroy 
   }
 
   createStatsChart(): void {
-    // Tu código para crear el gráfico se mantiene igual
     const ctx = this.statsChartRef.nativeElement.getContext('2d');
     if (ctx) {
       const labels = this.pokemon.stats.map((statInfo: any) => statInfo.stat.name);
